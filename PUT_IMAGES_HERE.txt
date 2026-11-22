@@ -1,0 +1,3 @@
+Put your own image files here:
+- Logo.jpg: website logo
+- Realimage.jpg: About page hero and profile photo

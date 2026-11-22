@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="am">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>AYU ZEMA | Admin Dashboard</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="/images/Logo.jpg">
+</head>
+<body class="admin-page">
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="sidebar">
+    <a class="admin-brand" href="/"><img src="/images/Logo.jpg" alt="Ayu Zema" onerror="this.src='/Logo.jpg'"><span><b>AYU ZEMA</b><small>ADMIN CONTROL</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <nav class="side-nav">
+      <button class="side-link active" data-target="overview"><span class="nav-icon">▦</span><span>Dashboard</span></button>
+      <button class="side-link" data-target="products-section"><span class="nav-icon">♫</span><span>Products / ምርቶች</span><i id="navProductCount">0</i></button>
+      <button class="side-link" data-target="orders-section"><span class="nav-icon">▤</span><span>Orders / ትዕዛዞች</span><i id="navOrderCount">0</i></button>
+      <button class="side-link" data-target="messages-section"><span class="nav-icon">✉</span><span>Messages / መልዕክቶች</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="online-dot"><span></span> Store system online</div>
+      <a href="/" class="store-link">↗ View Store</a>
+      <button id="logout" class="logout-btn">⇥ Sign out</button>
+    </div>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu">☰</button>
+      <div class="crumb">AYU ZEMA <span>/</span> <b>Admin panel</b></div>
+      <div class="top-user"><span class="avatar">AZ</span><span><b>Administrator</b><small>Store manager</small></span></div>
+    </header>
+    <section class="admin-content">
+      <div id="loginBox" class="login-panel admin-card">
+        <div class="login-mark"><img src="/images/Logo.jpg" alt="AYU ZEMA"></div>
+        <span class="eyebrow">SECURE ACCESS</span><h1>Welcome back</h1>
+        <p class="muted">Sign in to manage your AYU ZEMA store.</p>
+        <form id="loginForm" class="login-form">
+          <label>Username<input name="user" placeholder="Enter username" autocomplete="username" required></label>
+          <label>Password<input name="pass" type="password" placeholder="Enter password" autocomplete="current-password" required></label>
+          <button class="gold-btn wide">Sign in to dashboard <span>→</span></button>
+        </form><p id="loginMsg" class="form-message"></p>
+      </div>
+      <div id="dashboard" class="hidden">
+        <section id="overview" class="dash-section">
+          <div class="welcome-row"><div><span class="eyebrow">STORE OVERVIEW</span><h1>Dashboard</h1><p class="muted">እንኳን ወደ AYU ZEMA የአስተዳዳሪ ገጽ በደህና መጡ።</p></div><div class="date-chip"><span class="live-dot"></span> Live overview</div></div>
+          <div class="stats">
+            <article class="stat-card"><div class="stat-icon blue">♫</div><div class="stat-meta">TOTAL PRODUCTS</div><b id="productCount">0</b><small>Products in your store</small></article>
+            <article class="stat-card"><div class="stat-icon purple">▤</div><div class="stat-meta">TOTAL ORDERS</div><b id="orderCount">0</b><small>Customer orders received</small></article>
+            <article class="stat-card"><div class="stat-icon orange">◷</div><div class="stat-meta">NEW ORDERS</div><b id="newCount">0</b><small>Waiting for your action</small></article>
+            <article class="stat-card"><div class="stat-icon green">✉</div><div class="stat-meta">MESSAGES</div><b id="messageCount">0</b><small>Customer messages</small></article>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-card" data-target="products-section"><span class="quick-icon">＋</span><span><b>Add a product</b><small>Upload product photo and details</small></span><strong>→</strong></button>
+            <button class="quick-card" data-target="orders-section"><span class="quick-icon purple-bg">▤</span><span><b>Manage orders</b><small>Review and update customer orders</small></span><strong>→</strong></button>
+          </div>
+          <div class="admin-card welcome-card"><div><span class="eyebrow">AYU ZEMA COLLECTION</span><h2>Celebrate Ethiopian traditional music.</h2><p>Manage your Krar, Masenqo, Washint and accessories from one simple workspace.</p></div><img src="/images/Realimage.jpg" alt="Traditional instrument" onerror="this.style.display='none'"></div>
+        </section>
+        <section id="products-section" class="dash-section">
+          <div class="section-title"><div><span class="eyebrow">INVENTORY</span><h2>Products / ምርቶች</h2><p class="muted">Add, edit, and manage store products and photos.</p></div></div>
+          <div class="admin-card product-editor">
+            <div class="card-heading"><div><h3 id="formTitle">＋ Add New Product</h3><p class="muted">Fields marked * are required.</p></div><span class="pill">PRODUCT FORM</span></div>
+            <form id="productForm" class="admin-form" enctype="multipart/form-data">
+              <label>Product name (Amharic) *<input name="name" placeholder="ምርቱ ስም" required></label>
+              <label>Product name (English)<input name="nameEn" placeholder="Product name"></label>
+              <label>Price (ETB) *<input name="price" type="number" min="0" placeholder="4500" required></label>
+              <label>Stock quantity *<input name="stock" type="number" min="0" placeholder="10" value="1" required></label>
+              <label>Category<input name="category" placeholder="Krar / Accessories"></label>
+              <label class="file-label">Product photo
+                <input id="photoInput" name="photo" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+                <span class="file-hint">Choose JPG, PNG, WEBP or GIF · Max 4MB</span>
+              </label>
+              <div class="photo-preview-wrap"><div class="photo-preview" id="photoPreview"><span>♫</span><small>Photo preview</small></div></div>
+              <label class="full-field">Description (Amharic)<textarea name="description" placeholder="ስለ ምርቱ አጭር መግለጫ..."></textarea></label>
+              <label class="full-field">Description (English)<textarea name="descriptionEn" placeholder="Short product description..."></textarea></label>
+              <label class="feature-check"><input type="checkbox" name="featured" value="true"> Feature this product on homepage</label>
+              <div class="form-actions full-field"><button class="gold-btn">Save Product <span>→</span></button><button type="button" id="cancelEdit" class="secondary-btn hidden">Cancel edit</button></div>
+            </form><p id="productMsg" class="form-message"></p>
+          </div>
+          <div class="admin-card"><div class="card-heading"><div><h3>Product inventory</h3><p class="muted">All products currently listed in your store.</p></div><span class="pill" id="productPill">0 ITEMS</span></div><div id="productsAdmin" class="table-wrap"></div></div>
+        </section>
+        <section id="orders-section" class="dash-section">
+          <div class="section-title"><div><span class="eyebrow">SALES MANAGEMENT</span><h2>Orders / ትዕዛዞች</h2><p class="muted">Track orders and update their status.</p></div></div>
+          <div class="admin-card"><div class="card-heading"><div><h3>Customer orders</h3><p class="muted">New orders appear at the top.</p></div></div><div id="ordersAdmin" class="table-wrap"></div></div>
+        </section>
+        <section id="messages-section" class="dash-section">
+          <div class="section-title"><div><span class="eyebrow">CUSTOMER SUPPORT</span><h2>Messages / መልዕክቶች</h2><p class="muted">Messages submitted through your contact page.</p></div></div>
+          <div class="admin-card"><div class="card-heading"><div><h3>Customer messages</h3><p class="muted">Read customer questions and contact details.</p></div></div><div id="messagesAdmin" class="table-wrap"></div></div>
+        </section>
+      </div>
+      <footer class="admin-footer">© 2026 AYU ZEMA <span>Crafted for Ethiopian traditional music</span></footer>
+    </section>
+  </main>
+</div>
+<script src="/admin.js"></script>
+</body></html>
