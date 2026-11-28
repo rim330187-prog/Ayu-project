@@ -9,7 +9,6 @@ const path = require("path");
 const crypto = require("crypto");
 
 const app = express();
-app.set("trust proxy", 1);
 const session = require("express-session");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
